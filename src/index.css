@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Oswald", sans-serif;
+}
+
+p,
+a,
+button {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#underline {
+  position: relative !important;
+  display: inline-block;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+#underline::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 5px;
+  background-color: #1d4ed8;
+  position: absolute;
+  bottom: -10px;
+  z-index: -1;
+}
+
+#bg {
+  background-image: url("/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 200px;
+  background-size: cover;
+  /* Add the blur effect */
+  /* filter: blur(2px); */
+  /* -webkit-filter: blur(2px); */
+}
+
+#filter {
+  height: 200px;
+  /* background-color: #1d4ed8; */
+  background-color: #ffffff5e;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
