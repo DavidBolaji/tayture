@@ -1,9 +1,10 @@
 import React from "react";
 import { Space, Typography } from "antd";
 import { FiCalendar, FiClock } from "react-icons/fi";
-import { IBlogPage } from "./BlogMain";
+
 import { Link } from "react-router-dom";
 import { BsBoxArrowUpRight } from "react-icons/bs";
+import { IBlogPage } from "../../../pages/BlogMainPage";
 
 const BlogMainCard: React.FC<IBlogPage> = ({ img, date, text, id, title }) => {
   return (

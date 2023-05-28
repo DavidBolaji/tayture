@@ -1,8 +1,8 @@
 import React from "react";
-import { IBlogcard } from "../BlogSidebar/BlogCard";
-import { images } from "../../../constants/image";
-import BlogMainCard from "./BlogMainCard";
-import HeaderComponent from "../../HeaderComponent";
+import { IBlogcard } from "../layouts/ui/BlogSidebar/BlogCard";
+import { images } from "../constants/image";
+import HeaderComponent from "../layouts/HeaderComponent";
+import BlogMainCard from "../layouts/ui/BlogMain/BlogMainCard";
 
 export interface IBlogPage extends IBlogcard {
   text?: string;
@@ -53,7 +53,7 @@ const blogs: IBlogPage[] = [
   },
 ];
 
-const BlogMain: React.FC<IBlogPage> = () => {
+const BlogMainPage: React.FC<IBlogPage> = () => {
   return (
     <>
       <HeaderComponent text="Blog Page" />
@@ -73,4 +73,4 @@ const BlogMain: React.FC<IBlogPage> = () => {
   );
 };
 
-export default BlogMain;
+export default BlogMainPage;
