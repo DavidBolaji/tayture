@@ -83,7 +83,7 @@ const HeaderUi: React.FC = () => {
   const handleLogin = async (response: any) => {
     setM2IsOpen(false);
     setMIsOpen(false);
-    const req = await Axios.post("/user/register", {
+    await Axios.post("/user/register", {
       token: response.tokenId,
     });
   };
