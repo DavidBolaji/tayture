@@ -1,0 +1,36 @@
+.trans {
+  -webkit-box-shadow: inset 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
+  -moz-box-shadow: inset 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
+  box-shadow: inset 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
+}
+
+.trans2 {
+  -webkit-box-shadow: inset 1px 1px 5px -1px rgba(0, 0, 0, 0.38) !important;
+  -moz-box-shadow: inset 1px 1px 5px -1px rgba(0, 0, 0, 0.38) !important;
+  box-shadow: inset 1px 1px 5px -1px rgba(0, 0, 0, 0.38) !important;
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  shape-outside: circle(50% at 30%);
+  /* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
+  align-items: center;
+  position: relative;
+  border-radius: 50%;
+  -webkit-box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
+  -moz-box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
+  box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
+  /* box-shadow: -5px -5px 9px rgba(2, 2, 2, 0.25); */
+}
+.circle::after {
+  content: "";
+  position: absolute;
+  height: 40%;
+  width: 40%;
+  background-color: transparent;
+  border-radius: 50%;
+  transform: rotate(270deg);
+  box-shadow: inset 0px 2px 7px -1px rgba(255, 255, 255, 0.45),
+    inset 0px 2px 7px -1px rgba(94, 104, 121, 0.3);
+}

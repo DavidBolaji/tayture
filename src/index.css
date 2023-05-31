@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:where(.css-dev-only-do-not-override-w8mnev).ant-tour .ant-tour-content {
+  position: relative;
+  max-width: 300px !important;
+}
+
 h1,
 h2,
 h3,

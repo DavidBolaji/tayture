@@ -7,23 +7,46 @@ import {
   Space,
   Modal,
   Divider,
+  Avatar,
+  message,
 } from "antd";
-import { FiMenu } from "react-icons/fi";
+import { FiLogIn, FiMenu } from "react-icons/fi";
 import React, { useState } from "react";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
-import Axios from "../api/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../actions/userAction";
+import { Dispatch } from "redux";
 
 export const StyledMenu = styled(Menu)`
   border: none !important;
   overflow: visible;
   /* width: 300px; */
-  width: 150px;
+  width: 140px;
+  background-color: #ffffff00;
+
+  .ant-menu-submenu-open .ant-menu-submenu-active {
+    background-color: antiquewhite !important;
+    border: pink !important;
+  }
 
   @media only screen and (max-width: 960px) {
     width: 100% !important;
   }
+`;
+
+export const StyledMenu2 = styled(Menu)`
+  border: none !important;
+  > * {
+    border-color: #fff;
+  }
+  .ant-menu-submenu-open:hover > .ant-menu-submenu-active:hover {
+    border: none !important;
+  }
+  /* .ant-menu-submenu-active {
+    border: none !important;
+  } */
 `;
 
 export const StyledDrawer = styled(Drawer)`
@@ -73,7 +96,9 @@ const HeaderUi: React.FC = () => {
   const [m2IsOpen, setM2IsOpen] = useState<boolean>(false);
   const [current, setCurrent] = useState("mail");
   const navigate = useNavigate();
-
+  const dispatch: Dispatch<any> = useDispatch();
+  const userRed = useSelector((state: any) => state.user);
+  const { user, error } = userRed;
   const onClick: MenuProps["onClick"] = (e) => {
     setIsOpen(false);
     setCurrent(e.key);
@@ -83,10 +108,12 @@ const HeaderUi: React.FC = () => {
   const handleLogin = async (response: any) => {
     setM2IsOpen(false);
     setMIsOpen(false);
-    await Axios.post("/user/register", {
-      token: response.tokenId,
-    });
+    dispatch(login(response));
   };
+
+  if (error) {
+    message.error(error);
+  }
 
   return (
     <nav className="h-[8vh] bg-white fixed w-full z-30 shadow md:px-[80px] px-5 flex items-center justify-between">
@@ -100,37 +127,70 @@ const HeaderUi: React.FC = () => {
           onClick={onClick}
           selectedKeys={[current]}
         />
-        <ConfigProvider
-          theme={{
-            token: {
-              colorPrimaryHover: "#000000",
-              colorText: "#000",
-            },
-          }}
-        >
-          <LoginButton
-            onClick={() => setMIsOpen(true)}
-            className="font-bold border border-black rounded-none mr-3"
-          >
-            Login
-          </LoginButton>
-        </ConfigProvider>
+        {typeof user?.name === "undefined" ? (
+          <>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimaryHover: "#000000",
+                  colorText: "#000",
+                },
+              }}
+            >
+              <LoginButton
+                onClick={() => setMIsOpen(true)}
+                className="font-bold border border-black rounded-none mr-3"
+              >
+                Login
+              </LoginButton>
+            </ConfigProvider>
 
-        <ConfigProvider
-          theme={{
-            token: {
-              colorPrimaryBorder: "#000000",
-              colorPrimaryHover: "#fff",
-            },
-          }}
-        >
-          <SignupButton
-            onClick={() => setM2IsOpen(true)}
-            className="bg-black border border-black text-white font-bold rounded-none hover:text-white"
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimaryBorder: "#000000",
+                  colorPrimaryHover: "#fff",
+                },
+              }}
+            >
+              <SignupButton
+                onClick={() => setM2IsOpen(true)}
+                className="bg-black border border-black text-white font-bold rounded-none hover:text-white"
+              >
+                Signup
+              </SignupButton>
+            </ConfigProvider>
+          </>
+        ) : (
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimaryBorder: "#fff !important",
+                controlItemBgActive: "#fff !important",
+                colorBgContainer: "#ffffff00",
+              },
+            }}
           >
-            Signup
-          </SignupButton>
-        </ConfigProvider>
+            <StyledMenu2
+              mode="horizontal"
+              className="mt-3"
+              items={[
+                {
+                  label: "",
+                  key: "subMenu",
+                  icon: <Avatar src={user.picture} size={28} />,
+                  children: [
+                    {
+                      label: "Logout",
+                      key: "logout",
+                      icon: <FiLogIn />,
+                    },
+                  ],
+                },
+              ]}
+            />
+          </ConfigProvider>
+        )}
       </div>
       <div
         className="hover:cursor-pointer border border-[#fafafa] p-2 rounded-md md:hidden"
