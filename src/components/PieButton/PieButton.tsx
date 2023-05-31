@@ -43,7 +43,7 @@ const PieButton: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center bg-[#fafafa] md:mx-20 mx-5 py-40 ">
-      <div className="relative rounded-full overflow-clip shadow-2xl">
+      <div className="relative rounded-full overflow-hidden shadow-2xl">
         <div
           id=""
           className="w-72 h-72 rounded-full circle bg-[#fafafa] shadow"
