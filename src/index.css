@@ -4,11 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:where(.css-dev-only-do-not-override-w8mnev).ant-tour .ant-tour-content {
-  position: relative;
-  max-width: 300px !important;
-}
-
 h1,
 h2,
 h3,
@@ -64,4 +59,9 @@ body {
   background-color: #ffffff5e;
   filter: blur(5px);
   -webkit-filter: blur(5px);
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-tour .ant-tour-content {
+  position: relative;
+  max-width: 300px !important;
 }

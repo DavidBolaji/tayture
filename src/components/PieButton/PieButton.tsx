@@ -3,10 +3,7 @@ import { GiTeacher } from "react-icons/gi";
 import { RiParentFill } from "react-icons/ri";
 import { FaSchool } from "react-icons/fa";
 import "./PieButton.css";
-import { Button, ConfigProvider, Tour, TourProps } from "antd";
-import styled from "@emotion/styled";
-
-export const StyledTour = styled(Tour)``;
+import { Button, Tour, TourProps } from "antd";
 
 const PieButton: React.FC = () => {
   const ref1 = useRef(null);
@@ -81,19 +78,14 @@ const PieButton: React.FC = () => {
       </div>
       {/* <div id="my-pie-chart two"></div>
       <div id="my-pie-chart three"></div> */}
-      <ConfigProvider
-        theme={{
-          token: {},
-        }}
-      >
-        <StyledTour
-          type="primary"
-          open={open}
-          onClose={() => setOpen(false)}
-          steps={steps}
-          // mask={false}
-        />
-      </ConfigProvider>
+
+      <Tour
+        type="primary"
+        open={open}
+        onClose={() => setOpen(false)}
+        steps={steps}
+        // mask={false}
+      />
     </div>
   );
 };
