@@ -42,11 +42,11 @@ const PieButton: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-[#fafafa] md:mx-20 mx-5 py-40 ">
-      <div className="relative rounded-full overflow-hidden shadow-2xl">
+    <div className="flex items-center justify-center md:mx-20 mx-5 py-40 ">
+      <div className="relative rounded-full shadow-2xl overflow-hidden bg-pink-600">
         <div
           id=""
-          className="w-72 h-72 rounded-full circle bg-[#fafafa] shadow"
+          className="w-72 h-72 rounded-full circle bg-[#fafafa] shadow overflow-hidden"
         ></div>
         <div className="absolute bottom-9 right-[110px] cursor-pointer animate__animated animate__flash animate__slow animate__infinite 	infinite">
           <Button onClick={() => d()} className="border-none">
