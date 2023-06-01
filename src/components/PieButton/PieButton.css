@@ -5,22 +5,22 @@
 }
 
 .trans2 {
-  -webkit-box-shadow: inset 1px 1px 5px -1px rgba(0, 0, 0, 0.38) !important;
-  -moz-box-shadow: inset 1px 1px 5px -1px rgba(0, 0, 0, 0.38) !important;
-  box-shadow: inset 1px 1px 5px -1px rgba(0, 0, 0, 0.38) !important;
+  -webkit-box-shadow: inset 1px -1px 5px -1px rgba(0, 0, 0, 0.38) !important;
+  -moz-box-shadow: inset 1px -1px 5px -1px rgba(0, 0, 0, 0.38) !important;
+  box-shadow: inset 1px -1px 5px -1px rgba(0, 0, 0, 0.38) !important;
 }
 
 .circle {
   display: flex;
   justify-content: center;
-  shape-outside: circle(50% at 30%);
+  /* shape-outside: circle(50% at 30%); */
   /* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
   align-items: center;
   position: relative;
   border-radius: 50%;
-  /* -webkit-box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
+  -webkit-box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
   -moz-box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
-  box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important; */
+  box-shadow: 1px 2px 5px -1px rgba(0, 0, 0, 0.43) !important;
   /* box-shadow: -5px -5px 9px rgba(2, 2, 2, 0.25); */
 }
 .circle::after {
