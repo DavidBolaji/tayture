@@ -129,7 +129,7 @@ const HeaderUi: React.FC = () => {
         />
         {typeof user?.name === "undefined" ? (
           <>
-            <ConfigProvider
+            {/* <ConfigProvider
               theme={{
                 token: {
                   colorPrimaryHover: "#000000",
@@ -143,7 +143,7 @@ const HeaderUi: React.FC = () => {
               >
                 Login
               </LoginButton>
-            </ConfigProvider>
+            </ConfigProvider> */}
 
             <ConfigProvider
               theme={{
@@ -206,7 +206,7 @@ const HeaderUi: React.FC = () => {
         onClose={() => setIsOpen(false)}
         footer={[
           <Space key={"nav"} className="ml-3">
-            <ConfigProvider
+            {/* <ConfigProvider
               theme={{
                 token: {
                   colorPrimaryHover: "#000000",
@@ -223,7 +223,7 @@ const HeaderUi: React.FC = () => {
               >
                 Login
               </LoginButton>
-            </ConfigProvider>
+            </ConfigProvider> */}
 
             <ConfigProvider
               theme={{

@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AOS from "aos";
+
 import RootPage from "./pages/RootPage";
 import HomePage from "./pages/HomePage";
 import BlogPage from "./pages/BlogPage";
-
 import BlogMainPage from "./pages/BlogMainPage";
+import "aos/dist/aos.css";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,9 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  useEffect(() => {
+    AOS.init({});
+  }, []);
   return <RouterProvider router={router} />;
 }
 

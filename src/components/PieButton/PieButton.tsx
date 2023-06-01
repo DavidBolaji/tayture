@@ -15,7 +15,7 @@ const PieButton: React.FC = () => {
       placement: "bottom",
       description:
         " –Turn 300k+ teachers to skilled and progressive models for learners, thereby achieving broadened career opportunities, professional fulfillment in the short and long term and outstanding learners performance.",
-      icon: <GiTeacher size={30} color={"white"} />,
+      icon: <GiTeacher size={30} color={"blue"} />,
     });
   };
 
@@ -26,7 +26,7 @@ const PieButton: React.FC = () => {
       placement: "topLeft",
       description:
         " –Equip 500+ parents to effectively support the academic and general development of learners.",
-      icon: <GiTeacher size={30} color={"white"} />,
+      icon: <GiTeacher size={30} color={"blue"} />,
     });
   };
 
@@ -37,13 +37,18 @@ const PieButton: React.FC = () => {
       placement: "topRight",
       description:
         " –Empower 10k+ school administrators to create an enabling environment for developing academic excellence and high life performance in learners",
-      icon: <FaSchool color="white" size={30} />,
+      icon: <FaSchool color="blue" size={30} />,
     });
   };
 
   return (
-    <div className="flex items-center justify-center md:mx-20 mx-5 py-40 ">
-      <div className="relative rounded-full  shadow-2xl ">
+    <div className="flex items-center flex-col justify-center md:mx-20 mx-5 py-20 animate__animated animate__rotateIn  animate__slow 20s animate__repeat-5 animate__delay-6">
+      <div
+        className="relative rounded-full shadow-2xl "
+        data-aos="fade-Right"
+        data-aos-easing="linear"
+        data-aos-duration="1500"
+      >
         <div id="" className="w-72 h-72 rounded-full circle bg-[#fafafa]"></div>
         <div className="absolute bottom-9 right-[110px] cursor-pointer animate__animated animate__flash animate__slow animate__infinite 	infinite">
           <Button onClick={() => d()} className="border-none">
