@@ -9,9 +9,12 @@ import {
   Divider,
   Avatar,
   message,
+  Input,
+  Select,
+  SelectProps,
 } from "antd";
 import { FiLogIn, FiMenu } from "react-icons/fi";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import type { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
@@ -90,10 +93,33 @@ const items: MenuProps["items"] = [
   },
 ];
 
+const options: SelectProps["options"] = [
+  {
+    label: "Teacher",
+    value: "teacher",
+  },
+  {
+    label: "Administrator",
+    value: "admin",
+  },
+  {
+    label: "Parent",
+    value: "parent",
+  },
+];
+
 const HeaderUi: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [mIsOpen, setMIsOpen] = useState<boolean>(false);
   const [m2IsOpen, setM2IsOpen] = useState<boolean>(false);
+  const [extra, setExtra] = useState<boolean>(false);
+  const [res, setRes] = useState<{
+    id: string;
+    phone?: string;
+    role?: string[];
+  } | null>(null);
+  const phoneRef: any = useRef(null);
+  const [role, setRole] = useState<string[]>([]);
   const [current, setCurrent] = useState("mail");
   const navigate = useNavigate();
   const dispatch: Dispatch<any> = useDispatch();
@@ -105,10 +131,28 @@ const HeaderUi: React.FC = () => {
     navigate(e.key);
   };
 
+  const handleChange = (value: string[]) => {
+    setRole(value);
+  };
+
   const handleLogin = async (response: any) => {
     setM2IsOpen(false);
     setMIsOpen(false);
-    dispatch(login(response));
+    setExtra(true);
+    setRes({ id: response.tokenId });
+    // dispatch(login(response));
+  };
+
+  const handleLogin1 = async (response: any) => {
+    setM2IsOpen(false);
+    setMIsOpen(false);
+    dispatch(login({ id: response.tokenId, phone: "", role: [""] }));
+    setExtra(false);
+  };
+
+  const submit = () => {
+    dispatch(login({ ...res, phone: phoneRef.current.input.value, role }));
+    setExtra(false);
   };
 
   if (error) {
@@ -173,13 +217,19 @@ const HeaderUi: React.FC = () => {
           >
             <StyledMenu2
               mode="horizontal"
+              onClick={onClick}
               className="mt-3"
               items={[
                 {
                   label: "",
                   key: "subMenu",
-                  icon: <Avatar src={user.picture} size={28} />,
+                  icon: <Avatar src={user?.picture} size={28} />,
                   children: [
+                    user?.isAdmin && {
+                      label: "Admin",
+                      key: "admin",
+                      icon: <FiLogIn />,
+                    },
                     {
                       label: "Logout",
                       key: "logout",
@@ -192,8 +242,47 @@ const HeaderUi: React.FC = () => {
           </ConfigProvider>
         )}
       </div>
+      {typeof user?.name === "undefined"}
+      {typeof user?.name === "undefined" ? null : (
+        <div className="md:hidden block translate-x-[85px]">
+          <ConfigProvider
+            theme={{
+              token: {
+                colorPrimaryBorder: "#fff !important",
+                controlItemBgActive: "#fff !important",
+                colorBgContainer: "#ffffff00",
+              },
+            }}
+          >
+            <StyledMenu2
+              mode="horizontal"
+              className="mt-3"
+              onClick={onClick}
+              items={[
+                {
+                  label: "",
+                  key: "subMenu",
+                  icon: <Avatar src={user?.picture} size={28} />,
+                  children: [
+                    user?.isAdmin && {
+                      label: "Admin",
+                      key: "admin",
+                      icon: <FiLogIn />,
+                    },
+                    {
+                      label: "Logout",
+                      key: "logout",
+                      icon: <FiLogIn />,
+                    },
+                  ],
+                },
+              ]}
+            />
+          </ConfigProvider>
+        </div>
+      )}
       <div
-        className="hover:cursor-pointer border border-[#fafafa] p-2 rounded-md md:hidden"
+        className="cursor-pointer  border border-[#fafafa] p-2 rounded-md md:hidden"
         onClick={() => setIsOpen(true)}
       >
         <FiMenu size={24} />
@@ -233,15 +322,17 @@ const HeaderUi: React.FC = () => {
                 },
               }}
             >
-              <SignupButton
-                onClick={() => {
-                  setIsOpen(false);
-                  setM2IsOpen(true);
-                }}
-                className="bg-black border border-black text-white font-bold rounded-none hover:text-white"
-              >
-                Signup
-              </SignupButton>
+              {typeof user?.name === "undefined" ? (
+                <SignupButton
+                  onClick={() => {
+                    setIsOpen(false);
+                    setM2IsOpen(true);
+                  }}
+                  className="bg-black border border-black text-white font-bold rounded-none hover:text-white"
+                >
+                  Signup
+                </SignupButton>
+              ) : null}
             </ConfigProvider>
           </Space>,
         ]}
@@ -267,8 +358,8 @@ const HeaderUi: React.FC = () => {
           <GoogleLogin
             clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
             buttonText="Log in with Google"
-            onSuccess={handleLogin}
-            onFailure={handleLogin}
+            onSuccess={handleLogin1}
+            onFailure={handleLogin1}
             cookiePolicy={"single_host_origin"}
           />
           <Divider />
@@ -284,6 +375,41 @@ const HeaderUi: React.FC = () => {
               Sign up
             </span>
           </p>
+        </div>
+      </Modal>
+      <Modal
+        open={extra}
+        footer={null}
+        closable={true}
+        onCancel={() => setExtra(false)}
+        centered
+      >
+        <div className="flex flex-col items-center justify-center h-64">
+          <h1 className="text-3xl mb-5">You are almost done</h1>
+
+          <Input
+            ref={phoneRef}
+            type="text"
+            placeholder="Enter your phone number"
+            className="mb-5"
+            required
+          />
+          <Select
+            mode="multiple"
+            className="mb-5"
+            allowClear
+            style={{ width: "100%" }}
+            placeholder="Please select"
+            onChange={handleChange}
+            options={options}
+          />
+
+          <button
+            className="text-white w-full p-2 bg-black"
+            onClick={() => submit()}
+          >
+            Submit
+          </button>
         </div>
       </Modal>
       <Modal

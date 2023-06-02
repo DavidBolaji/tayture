@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage";
 import BlogPage from "./pages/BlogPage";
 import BlogMainPage from "./pages/BlogMainPage";
 import "aos/dist/aos.css";
+import BlogsAdmin from "./pages/BlogsAdmin";
+import AuthLayer from "./AdminService/AuthLayer";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
     element: <RootPage />,
     children: [
       { index: true, element: <HomePage /> },
+      {
+        path: "/admin",
+        element: (
+          <AuthLayer>
+            <BlogsAdmin />
+          </AuthLayer>
+        ),
+      },
       {
         path: "/blog",
         // @ts-ignore

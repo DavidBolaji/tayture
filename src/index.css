@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  overflow-x: hidden;
+}
+/* body {
+  overflow-x: hidden;
+} */
+
 h1,
 h2,
 h3,

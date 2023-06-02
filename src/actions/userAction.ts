@@ -9,7 +9,9 @@ export const login = (response: any) => async (dispatch: Dispatch) => {
   });
   try {
     const res = await Axios.post("/user/register", {
-      token: response.tokenId,
+      token: response.id,
+      role: response.role,
+      phone: response.phone,
     });
     console.log(res);
     dispatch({
