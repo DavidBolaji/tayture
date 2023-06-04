@@ -12,8 +12,8 @@ const start = {
   content: "",
   image: "",
 };
-
-const AdminComponent: React.FC<{ admin: boolean }> = ({ admin }) => {
+// admin
+const AdminComponent: React.FC<{ admin: boolean }> = ({}) => {
   const [page, setPage] = useState<"create" | "view" | "order">("order");
   const [init, setInit] = useState<Icreate>(start);
   const [, setCount] = useState(1);
