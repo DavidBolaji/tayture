@@ -1,17 +1,5 @@
-import { Alert, Divider, Space, Spin } from "antd";
+import { Alert, Space, Spin } from "antd";
 import React, { useEffect } from "react";
-// import { BsHandThumbsUpFill } from "react-icons/bs";
-// import { BiMessageRounded } from "react-icons/bi";
-// import // EmailShareButton,
-// EmailIcon,
-// FacebookShareButton,
-// FacebookIcon,
-// FacebookShareCount,
-//   LinkedinShareButton,
-//   TelegramShareButton,
-//   TwitterShareButton,
-//   WhatsappShareButton,
-// "react-share";
 import BlogSidebar from "../BlogSidebar";
 import { useParams } from "react-router-dom";
 import { getSingleBlog } from "../../../actions/blogAction";
@@ -42,22 +30,19 @@ const BlogSection: React.FC = () => {
           </div>
         ) : (
           <div className="w-full">
-            <h2 className="text-4xl">{blog.title}</h2>
+            <h2 className="text-4xl mb-3">{blog.title}</h2>
             <div className="md:pr-10">
-              <Divider />
+              <hr />
               <div className="flex justify-between items-center">
-                {/* <Space> */}
-                {/* <!-- ShareThis BEGIN --> */}
-                <div className="sharethis-inline-reaction-buttons"></div>
-                {/* <!-- ShareThis END --> */}
-                {/* </Space> */}
                 <Space>
                   {/* <!-- ShareThis BEGIN --> */}
                   <div className="sharethis-inline-share-buttons"></div>
                   {/* <!-- ShareThis END --> */}
                 </Space>
+                <div className="sharethis-inline-reaction-buttons w-32 h-16"></div>
               </div>
-              <Divider />
+              <hr />
+              {/* <Divider /> */}
               <div className="">
                 <AutoTextarea value={blog.content} />
               </div>
