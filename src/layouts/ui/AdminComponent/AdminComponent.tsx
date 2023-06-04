@@ -25,22 +25,36 @@ const AdminComponent: React.FC<{ admin: boolean }> = ({ admin }) => {
     //   label: 'Order',
     //   key: 'order',
     // },
-    admin
-      ? {
-          label: "Blog",
-          key: "sub",
-          children: [
-            {
-              label: "Create",
-              key: "create",
-            },
-            {
-              label: "View",
-              key: "view",
-            },
-          ],
-        }
-      : null,
+    {
+      label: "Blog",
+      key: "sub",
+      children: [
+        {
+          label: "Create",
+          key: "create",
+        },
+        {
+          label: "View",
+          key: "view",
+        },
+      ],
+    },
+    // admin
+    //   ? {
+    //       label: "Blog",
+    //       key: "sub",
+    //       children: [
+    //         {
+    //           label: "Create",
+    //           key: "create",
+    //         },
+    //         {
+    //           label: "View",
+    //           key: "view",
+    //         },
+    //       ],
+    //     }
+    //   : null,
 
     {
       label: "Home",

@@ -9,7 +9,7 @@ import { IBlogPage } from "../../../pages/BlogMainPage";
 const BlogMainCard: React.FC<IBlogPage> = ({
   image,
   date,
-  content,
+  description,
   _id,
   title,
   read,
@@ -20,7 +20,18 @@ const BlogMainCard: React.FC<IBlogPage> = ({
         <img src={image} className="w-full h-full object-cover" />
       </div>
       <div>
-        <h3 className="my-2 text-2xl">{title}</h3>
+        <Typography.Paragraph
+          ellipsis={{
+            rows: 1,
+          }}
+          className="mt-5 text-lg font-['Oswald']"
+          // className="font-[arial] mt-3"
+        >
+          {/* <h3 > */}
+          {title}
+          {/* </h3> */}
+          {/* {description} */}
+        </Typography.Paragraph>
         <div className="flex items-center gap-5">
           <Space>
             <FiClock />
@@ -38,7 +49,7 @@ const BlogMainCard: React.FC<IBlogPage> = ({
           }}
           className="font-[arial] mt-3"
         >
-          {content}
+          {description}
         </Typography.Paragraph>
       </div>
       <div className="">

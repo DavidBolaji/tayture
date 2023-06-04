@@ -9,6 +9,7 @@ import { Alert, Spin } from "antd";
 
 export interface IBlogPage extends IBlogcard {
   content?: string;
+  description?: string;
   read?: string;
   length?: string;
 }
@@ -43,6 +44,7 @@ const BlogMainPage: React.FC<IBlogPage> = () => {
             title={blog.title}
             key={blog._id}
             image={blog.image}
+            description={blog.description}
             content={blog.content}
             _id={blog._id}
             read={blog.length}

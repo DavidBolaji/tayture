@@ -54,9 +54,9 @@ const ViewProduct: React.FC<IView> = ({ change }) => {
       className: "px-4 py-2",
     },
     {
-      title: "Content",
-      dataIndex: "content",
-      key: "content",
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
       className: "px-4 py-2",
       render: (_text: string, _record: any) => (
         <Typography.Paragraph
@@ -65,7 +65,7 @@ const ViewProduct: React.FC<IView> = ({ change }) => {
           }}
           className="font-[arial] mt-3"
         >
-          {_record.content}
+          {_record.description}
         </Typography.Paragraph>
       ),
     },

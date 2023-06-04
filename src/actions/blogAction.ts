@@ -48,7 +48,7 @@ export const getSingleBlog = (id: string) => async (dispatch: Dispatch) => {
 export const createBlogs =
   (value: any, cb: (res: string, state: "success" | "error") => void) =>
   async (dispatch: Dispatch) => {
-    const { image, _id, content, title } = value;
+    const { image, _id, content, title, description } = value;
     dispatch({
       type: BLOG_LIST_REQUEST,
     });
@@ -58,6 +58,7 @@ export const createBlogs =
         _id,
         content,
         title,
+        description,
       });
 
       // dispatch({
