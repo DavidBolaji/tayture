@@ -13,7 +13,7 @@ const start = {
   image: "",
 };
 // admin
-const AdminComponent: React.FC<{ admin: boolean }> = ({}) => {
+const AdminComponent: React.FC<{ admin: boolean }> = ({ admin }) => {
   const [page, setPage] = useState<"create" | "view" | "order">("order");
   const [init, setInit] = useState<Icreate>(start);
   const [, setCount] = useState(1);
@@ -25,36 +25,23 @@ const AdminComponent: React.FC<{ admin: boolean }> = ({}) => {
     //   label: 'Order',
     //   key: 'order',
     // },
-    {
-      label: "Blog",
-      key: "sub",
-      children: [
-        {
-          label: "Create",
-          key: "create",
-        },
-        {
-          label: "View",
-          key: "view",
-        },
-      ],
-    },
-    // admin
-    //   ? {
-    //       label: "Blog",
-    //       key: "sub",
-    //       children: [
-    //         {
-    //           label: "Create",
-    //           key: "create",
-    //         },
-    //         {
-    //           label: "View",
-    //           key: "view",
-    //         },
-    //       ],
-    //     }
-    //   : null,
+
+    admin
+      ? {
+          label: "Blog",
+          key: "sub",
+          children: [
+            {
+              label: "Create",
+              key: "create",
+            },
+            {
+              label: "View",
+              key: "view",
+            },
+          ],
+        }
+      : null,
 
     {
       label: "Home",
