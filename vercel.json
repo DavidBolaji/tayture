@@ -5,5 +5,5 @@
       "destination": "/"
     }
   ],
-  "trailingSlash": true
+  "trailingSlash": false
 }
