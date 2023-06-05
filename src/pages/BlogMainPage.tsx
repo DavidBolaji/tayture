@@ -14,7 +14,7 @@ export interface IBlogPage extends IBlogcard {
   length?: string;
 }
 
-const BlogMainPage: React.FC<IBlogPage> = () => {
+const BlogMainPage: React.FC = () => {
   const blogList = useSelector((state: any) => state.blogList);
   // const navigate = useNavigate();
   const dispatch: Dispatch<any> = useDispatch();

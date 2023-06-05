@@ -55,7 +55,7 @@ const BlogMainCard: React.FC<IBlogPage> = ({
       <div className="">
         {/* <Divider /> */}
         <Space className="flex justify-end items-center w-full mt-5">
-          <Link to={`/blog/${_id}`}>Read More</Link>
+          <Link to={`${_id}`}>Read More</Link>
           <BsBoxArrowUpRight />
         </Space>
       </div>
